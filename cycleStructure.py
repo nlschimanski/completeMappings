@@ -8,11 +8,10 @@ cycle(i,perm)         - takes an element of the domain of a permutation and
                         containing i.
 cyclic(permutation)   - takes a permutation written in standard notation and
                         returns a the permutation written in cyclic notation
-lengthOfCycles(cyclic)- takes a permutation written in cyclic notation and
+cycleType(cyclic)     - takes a permutation written in cyclic notation and
                         returns a list of integers that correspond to the
-                        length of the cycles in the decomposition
+                        cycle type of the permutation
 definitions to come
--orthoCheck
 -orderOfPermutation
 '''
 
@@ -35,8 +34,8 @@ def cyclic(permutation):
     return cycles
 
 
-def lengthOfCycles(cycles):
-    return [len(cycles[i]) for i in xrange(len(cycles))]
+def cycleType(cycles):
+    return [len(cycles[i]) for i in xrange(len(cycles))].sort()
 
 
         
