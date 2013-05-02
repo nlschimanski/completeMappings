@@ -18,6 +18,7 @@ G_orbit(pi,H)       - returns the orbit of the element pi, a permutation, under 
                       conjugation by elements in the group H
 fix(g,ol)           - returns a list of permutations that are fixed by the
                       automorphism g
+isOrthomorphism(pi) - returns True if pi is an orthomorphism
 '''
 
 
@@ -112,3 +113,15 @@ def addxtransformation(pi):
 # the function pi+l
 def addktransformation(pi,l):
     return tuple([pi[i]^l for i in range(len(pi))])
+
+# Given a permutation, isOrthomorphism returns True if the permutation is
+# an orthomorphism or a partial orthomorphism. When a (partially defined) function
+# on \Z[n] is inputed, isOrthomorphism will also determine if the XOR of the funciton
+# is a permutation.
+def isOrthomorphism(pi):
+    k = len(pi)
+    xor = [pi[j]^j for j in xrange(k)]
+    if len(np.unique(xor))==k:
+        return True
+    else:
+        return False
