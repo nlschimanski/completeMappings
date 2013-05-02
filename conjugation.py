@@ -11,12 +11,12 @@ generateH()         - returns the subspace of Aut(\Z) whose elements fix e_1,
                       e_2,e_3
 conjugate(pi,g)     - returns the permutation g pi g^{-1}
 stabCheck(pi,H)     - returns the non-identity elements in the stabilizer of
-                      pi under the action of conjugation by the group H
-stabCheckAll(ol,H)  - returns a list of pairs with the first element a complete
-                      map and the second non-identity elements of the stabilizer
-G_orbit(pi,H)       - returns the orbit of the element pi under the action of
+                      pi, a permutation, under the action of conjugation by the group H
+stabCheckAll(ol,H)  - returns a list of pairs with the first element a permutation
+                      and the second non-identity elements of the stabilizer
+G_orbit(pi,H)       - returns the orbit of the element pi, a permutation, under the action of
                       conjugation by elements in the group H
-fix(g,ol)           - returns a list of complete maps that are fixed by the
+fix(g,ol)           - returns a list of permutations that are fixed by the
                       automorphism g
 '''
 
@@ -59,14 +59,14 @@ def generateH():
     return tuple(autos)
 
 
-# Conjugates a complete map by an automorphism.
-# Inputs are complete map pi and automorphism g.
+# Conjugates a permutation by an automorphism.
+# Inputs are permutation pi and automorphism g.
 def conjugate(pi,g):
     return [g[pi[g.index(i)]] for i in range(16)]
 
 
 # Given a subgroup of Aut(\Z), H, stabCheck returns all the nonidentity
-# elements in the stabilizer of the complete map pi (with group action
+# elements in the stabilizer of the permutation pi (with group action
 # of conjugation).
 def stabCheck(pi,H):
     stab = []
@@ -83,7 +83,7 @@ def stabilizer(pi,H):
     return stab
 
 
-# Returns a list of pairs: (complete map, stabilizer elements) so long
+# Returns a list of pairs: (permutation, stabilizer elements) so long
 # as non-identity stabilizer elements exist.
 def stabCheckAll(orthos,H):
     pairs = []
@@ -94,20 +94,21 @@ def stabCheckAll(orthos,H):
     return pairs
 
 
-# Returns the orbit of a complete map pi
+# Returns the orbit of a permutation pi
 def G_orbit(pi,H):
     return list(set([tuple(conjugate(pi,g)) for g in H]))
 
 
-# Returns a list of complete maps fixed by an autormophism G
+# Returns a subset of orthos fixed by an autormophism G
+# via the action of conjugation
 def fix(g,orthos):
     return [item for item in orthos if tuple(conjugate(item,g))==tuple(item)]
 
-# Given a complete map pi, this function returns the complete map pi+id
+# Given a function pi, addxtransformation returns the function pi+id
 def addxtransformation(pi):
     return tuple([pi[i]^i for i in range(len(pi))])
 
-# Given a complete map pi and an element, l, of \Z, this function returns
-# the complete map pi+l
+# Given a function pi and an element, l, of \Z, addktransformation returns
+# the function pi+l
 def addktransformation(pi,l):
     return tuple([pi[i]^l for i in range(len(pi))])
