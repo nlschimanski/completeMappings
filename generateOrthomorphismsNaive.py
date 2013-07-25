@@ -2,13 +2,13 @@
 Orthomorphisms(p,n)  - Given an integer n greater than 1 and a nonempty
                        list of equal length partial orthomorphisms as lists,
                        p, this function returns a complete set of
-                       orthomorphisms on \Z[n]. To generate all orthomorphisms
+                       orthomorphisms on Z_2^n. To generate all orthomorphisms
                        for a given n, set p equal to
                        [[i] for i in range(pow(2,n))].
 
 """
 
-def Orthomorphisms(n,partials):
+def Orthomorphisms(partials,n):
     while len(partials[0]) != pow(2,n):
         newpartials = []
         for item in partials:
